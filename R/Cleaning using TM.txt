@@ -1,0 +1,38 @@
+Useful cleaning in R using tm (textmining) package
+
+#read in csv
+testSLtweets <- read.csv(file.choose(), header = T)
+#structure of csv file
+str(testSLtweets)
+
+#make each tweet viewed as a document using corpus
+library(tm)
+TweetList <- iconv(testSLtweets$Tweet)
+TweetList <- Corpus(VectorSource(TweetList))
+inspect(TweetList[1:5])
+
+#clean the text
+TweetList <- tm_map(TweetList, tolower)
+
+TweetList <- tm_map(TweetList, removePunctuation)
+
+TweetList <- tm_map(TweetList, removeNumbers)
+
+CleanSet <- tm_map(TweetList, removeWords, stopwords('english'))
+
+removeURL <- function(x) gsub('http[[:alnum:]]*', '', x)
+CleanSet <- tm_map(CleanSet, content_transformer(removeURL))
+
+#remove to names that appear in every tweet discovered with tdm, multiples seperate with comma
+CleanSet <- tm_map(CleanSet, removeWords, c('suddenlink'))
+
+CleanSet <- tm_map(CleanSet, stripWhitespace)
+
+#verify cleaning
+inspect(CleanSet[1:5])
+
+#term document matrix - puts unstructured to rows and columns
+tdm <- TermDocumentMatrix(CleanSet)
+tdm
+tdm <- as.matrix(tdm)
+tdm[1:10, 1:20]

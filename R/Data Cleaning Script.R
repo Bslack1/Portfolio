@@ -1,0 +1,71 @@
+#test set up with combined methods
+#load packages
+library(tm)
+library(writexl)
+
+#load file, read it into a variable so it can be cleaned and structured
+cableData <- read.csv(file.choose(), header = T)
+#shows all the columns in file to pick the right col for tweets
+str(cableData)
+
+#make each tweet viewed as a document using corpus, verify
+cableTweetList <- iconv(cableData$Tweet)
+cableTweetList <- Corpus(VectorSource(cableTweetList))
+inspect(cableTweetList[1:5])
+
+#clean the text
+cableTweetList <- tm_map(cableTweetList, tolower)
+
+#remove punctuation, preserve but don't use b/c of #
+#TweetList <- tm_map(TweetList, removePunctuation)
+
+#function to specify removal of punct without removing #
+removeMostPunctuation<-
+  function (x, preserve_intra_word_dashes = True) 
+  {
+    rmpunct <- function(x) {
+      x <- gsub("#", "\002", x)
+      x <- gsub("[[:punct:]]+", "", x)
+      gsub("\002", "#", x, fixed = TRUE)
+    }
+    if (preserve_intra_word_dashes) { 
+      x <- gsub("(\\w)-(\\w)", "\\1\001\\2", x)
+      x <- rmpunct(x)
+      gsub("\001", "-", x, fixed = TRUE)
+    } else {
+      rmpunct(x)
+    }
+  }
+
+cableTweetList <- tm_map(cableTweetList, content_transformer(removeMostPunctuation),
+                    preserve_intra_word_dashes = TRUE)
+
+cableTweetList <- tm_map(cableTweetList, removeNumbers)
+
+CleanSet <- tm_map(cableTweetList, removeWords, stopwords('english'))
+
+#function to remove urls
+removeURL <- function(x) gsub('http[[:alnum:]]*', '', x)
+CleanSet <- tm_map(CleanSet, content_transformer(removeURL))
+
+#remove to names that appear in every tweet discovered with tdm, multiples separate with comma consider removing other freq words
+CleanSet <- tm_map(CleanSet, removeWords, c('coxcomm', 'xfinity', 'googlefiber', 'suddenlink', 'mediacomsupport', 'getspectrum', 'frontiercorp', 'verizonfios', 'dish', 'optimum'))
+
+#to combine words meaning the same thing, may or may not be needed
+#CleanSet <- tm_map(CleanSet, gsub,
+#pattern = 'stocks',
+#replacement = 'stock')
+
+#remove white space & verify
+CleanSet <- tm_map(CleanSet, stripWhitespace)
+inspect(CleanSet[1:5])
+
+#export this data set to excel to save for analysis
+write_xlsx(CleanSet, "C:\\Users\\Administrator\\Documents\\Data Sets\\Cable\\Excel Files\\Cox\\CoxAnalysisData.xlsx")
+
+
+
+
+
+
+

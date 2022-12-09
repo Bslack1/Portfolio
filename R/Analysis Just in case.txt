@@ -1,0 +1,109 @@
+#read file in, convert to UTF or ASCII to eliminate unrecognized chars
+APPROPdataVarName <- read.csv(file.choose(), header = T)
+tweets <- iconv(APPROPdataVarName$Tweet, to = "UTF-8")
+
+
+#read in csv
+testSLtweets <- read.csv(file.choose(), header = T)
+#structure of csv file
+str(testSLtweets)
+
+#make each tweet viewed as a document using corpus
+library(tm)
+TweetList <- iconv(testSLtweets$Tweet)
+TweetList <- Corpus(VectorSource(TweetList))
+inspect(TweetList[1:5])
+
+#clean the text
+TweetList <- tm_map(TweetList, tolower)
+
+TweetList <- tm_map(TweetList, removePunctuation)
+
+TweetList <- tm_map(TweetList, removeNumbers)
+
+CleanSet <- tm_map(TweetList, removeWords, stopwords('english'))
+
+#function to remove urls
+removeURL <- function(x) gsub('http[[:alnum:]]*', '', x)
+CleanSet <- tm_map(CleanSet, content_transformer(removeURL))
+
+#remove to names that appear in every tweet discovered with tdm, multiples seperate with comma consider removing other freq words like it's
+CleanSet <- tm_map(CleanSet, removeWords, c('suddenlink'))
+#to combine words meaning the same thing
+#CleanSet <- tm_map(CleanSet, gsub,
+                   #pattern = 'stocks',
+                   #replacement = 'stock')
+
+CleanSet <- tm_map(CleanSet, stripWhitespace)
+
+#verify cleaning
+inspect(CleanSet[1:5])
+
+#term document matrix - puts unstructured to rows and columns
+tdm <- TermDocumentMatrix(CleanSet)
+tdm
+tdm <- as.matrix(tdm)
+tdm[1:10, 1:20]
+
+#word frequency
+wordFreq <- rowSums(tdm)
+#removes words appearing less than 5 times
+wordFreq <- subset(wordFreq, wordFreq >= 10)
+#make a barplot las words vertical on x axis,
+barplot(wordFreq, 
+        las = 2,
+        col = rainbow(33))
+
+#word cloud see video for all options, wc2 can put into other words or shapes
+library(wordcloud)
+wordFreq <- sort(rowSums(tdm), decreasing = TRUE)
+set.seed(222)
+wordcloud(words = names(wordFreq),
+          freq = wordFreq)
+
+#sentiment analysis libraries to load
+library(syuzhet)
+library(lubridate)
+library(ggplot2)
+library(scales)
+library(reshape2)
+library(dplyr)
+
+#read file again
+suddenlink <- read.csv(file.choose(), header = T)
+tweets <- iconv(suddenlink$Tweet, to = "UTF-8")
+
+#obtain sentiment scores
+sentscores <- get_nrc_sentiment(tweets)
+head(sentscores)
+#to look at a specific tweet
+tweets[4]
+#find specific words
+get_nrc_sentiment('no')
+
+barplot(colSums(sentscores),
+        las = 2,
+        col = rainbow(10),
+        ylab = "count",
+        main = "Sentiment Scores SuddenlinkTest")
+
+
+
+gc(verbose = getOption("verbose"), reset = FALSE, full = TRUE)
+
+CleanSet <- tm_map(CleanSet, removeWords, c('coxcomm', 'xfinity', 'googlefiber', 'suddenlink', 'mediacomsupport', 'getspectrum', 'frontiercorp', 'verizonfios', 'dish', 'optimum' ))
+
+
+
+get_sentiment(
+char_v,
+method = "afinn",
+path_to_tagger = NULL,
+cl = NULL,
+language = "english",
+lexicon = NULL,
+regex = "[^A-Za-z']+",
+lowercase = TRUE
+)
+
+memory.limit(size=56000)
