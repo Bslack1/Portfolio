@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1580772123 source:c:\users\berna\onedrive\documents\c++\school projects\slack250proj1\main.cpp
+	<iostream>
+	"SingleLL.h"
+
+1580771866 c:\users\berna\onedrive\documents\c++\school projects\slack250proj1\singlell.h
+	<iostream>
+	<string>
+

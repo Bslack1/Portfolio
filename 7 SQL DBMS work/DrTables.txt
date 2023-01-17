@@ -1,0 +1,79 @@
+CREATE TABLE episode (
+	ep_id INT PRIMARY KEY, 
+	s_id INT,
+	dr_id INT,
+	c_id INT,
+	v_id INT,
+	Title VARCHAR(100),
+);
+
+INSERT INTO episode ( ep_id, s_id, dr_id, c_id, v_id, Title )
+VALUES 
+	(310, 3, 10, 4, 13, 'Blink'),
+	(54, 5, 11, 5, 13, 'The Time of Angels'),
+	(55, 5, 11, 5, 13, 'Flesh and Stone'),	
+	(56, 5, 11, 5, 13, 'The God Complex'),
+	(75, 7, 11, 5, 13, 'The Angels Take Manhattan'),
+	(912, 9, 12, 6, 13, 'Hell Bent');
+
+DESCRIBE episode;	
+
+
+CREATE TABLE doctor (
+	dr_id INT PRIMARY KEY,
+	dr_actor VARCHAR(50),
+	dr_char VARCHAR(25)
+);
+
+INSERT INTO doctor ( dr_id, dr_actor, dr_char )
+VALUES 
+	(10, 'David Tennant', 'Pinstripe, Chucks'),
+	(11, 'Matt Smith', 'Bowties are cool, Fez'),
+	(12, 'Peter Capaldi', 'Sun Glasses, Rock and Roll');
+
+DESCRIBE doctor;
+
+
+CREATE TABLE companion (
+	c_id INT PRIMARY KEY,
+	dr_id INT,
+	c_actor VARCHAR(25),
+	c_char VARCHAR(25),
+	c_name VARCHAR(25),
+);
+
+INSERT INTO companion ( c_id, dr_id, c_actor, c_char,c_name )
+VALUES
+	( 4, 10, 'Freema Agyeman', 'Med Student', 'Martha Jones'),
+	( 5, 11, 'Karen Gillan', 'River Songs Mother', 'Amy Pond'),
+	( 6, 12, 'Jenna Coleman', 'Longest Run');
+
+DESCRIBE companion;
+
+
+CREATE TABLE villain (
+	v_id INT PRIMARY KEY,
+	v_char VARCHAR(25),
+	v_name VARCHAR(25),
+);
+INSERT INTO companion ( v_id, v_char,v_name )
+VALUES
+	(13, 'Dont Blink, Angel Statues', 'Weeping Angels');
+
+DESCRIBE villain;
+ 
+
+CREATE TABLE season (
+	s_id INT PRIMARY KEY,
+	ep_id INT,
+);
+INSERT INTO season (s_id, ep_id)
+VALUES
+	( 3, 310 ),
+	( 5, 54 ),
+	( 5, 55 ),
+	( 5, 56 ),
+	( 7, 75 ),
+	( 9, 912 );
+
+DESCRIBE season;

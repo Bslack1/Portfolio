@@ -1,0 +1,371 @@
+\documentclass[12pt]{article}
+
+\usepackage{fullpage}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage[skins]{tcolorbox}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{mnsymbol}
+\usepackage{tikz}
+%\usefonttheme[onlymath]{serif}
+
+
+\begin{document}
+
+\definecolor{beige}{RGB}{217, 217, 132}
+\definecolor{mypink}{RGB}{192, 52, 235}
+\definecolor{myblue}{RGB}{17, 194, 14}
+
+\begin{center} \huge\textbf{Riemann Sums} \end{center}
+\color{mypink}
+\textbf{\large Objectives}
+\color{myblue}
+\begin{itemize}
+\item Define Riemann sum
+\item Evaluate a definite integral
+\item Understand the properties of definite integrals
+\end{itemize}
+
+\bigskip
+
+\color{black} Previously you learned how to approximate an integral by dividing the area into rectangles of equal widths. Though it is convenient to use equal intervals, this is not always the most accurate. The following method allows us to approximate more diverse integrals with greater accuracy. Just as using more partitions gives a greater accuracy. Riemann Sums are important because they bring us to definite integrals, which give us the exact area of a function.\\
+
+\begin{tcolorbox}[colback = white!5!white, 
+				  colframe = myblue,
+				  colbacktitle = white!5!white,
+				  drop shadow southeast, 
+				  enhanced,
+				  sharp corners = all, 
+title =\color{mypink} \large \textbf{Bio Short \color{black} Georg Friedrich Bernhard Riemann}]
+
+\begin{wrapfigure}[75]{l}{1.25in}
+\includegraphics[width=.75\linewidth]{BRiemann}
+\end{wrapfigure}
+
+German mathematician Bernhard Riemann studied mathematics and physics. His most important work consisted of geometry, complex analysis and mathematical physics. Riemann's work laid the foundation for general relativity. This section will explain how he fine tuned the definition of an integral with what we call Riemann sums. 
+
+\end{tcolorbox}
+
+\bigskip 
+
+\begin{tcolorbox}[colback = lightgray!75!white,
+				  sharp corners = all,
+				  colframe = lightgray!75!white]
+\textbf{\large Riemann Sum - Formal Definition}
+
+\bigskip
+
+Let $f$ be defined on the closed interval $[a,b]$, and let $\Delta$ be a partition of the interval such that:
+
+$$a = x_0 < x_1 < x_2 < ... < x_{n-1} < x_n = b$$
+
+\bigskip
+where $\Delta x_i$ is the width of the $i^{th}$ sub-interval $[x_{i-1}, x_i]$. If $C_i$ is \textit{any} point in the $i^{th}$ sub-interval, then the sum
+\bigskip
+$$ \sum_{i=1}^{n}f(C_i) \Delta x_i\text{, \  where} \  \ \  x_{i-1} \ \le  \ C_i \  \le \  x_i$$
+\bigskip
+
+is a Riemann Sum of $f$ for the partition $\Delta$.
+ 
+\end{tcolorbox}
+
+\begin{wrapfigure}{r}{.45\textwidth}
+\includegraphics[scale=.55]{normEx3}
+\end{wrapfigure}
+
+\bigskip
+
+\bigskip
+
+Similar to finding the upper and lower sums as seen previously, Riemann Sums gives us the approximation of an area. The partitions do not need to be equal. The sum of the area of each interval will give us an approximation of the area containing the partitions, the area bounded by $f$. The \textbf{norm} is the largest partition, and if every partition is equal (as seen in the previous examples) then the partition is \textbf{regular}. Regardless of the method the fact remains, the more partitions used, the more accurate the approximation.
+
+\bigskip
+
+\bigskip
+
+The \textbf{norm} is represented as $||\Delta||$, therefore, for \textbf{regular} partitions:
+
+$$ ||\Delta|| = \Delta x = \frac{b-a}{n} \ \color{myblue} \hspace{.5cm} \ n \ \text{being the number of partitions.}$$
+
+\noindent For partitions of varying size, the \textbf{norm} has the following relationship to the sub-interval:
+
+$$ \frac{b-a}{||\Delta||} \ \le \ n $$
+
+
+
+
+\bigskip
+
+\noindent 
+
+\bigskip
+
+\large \noindent \textbf{Left, right, and other ways...}
+
+\bigskip
+
+\normalsize There is a difference in how you can calculate Riemann Sums, the \textbf{left} Riemann Sum uses the left side of each sub-interval which will give you an underestimate, and the \textbf{right} Riemann Sum uses the right side of each sub-interval which will give you an overestimate. The \textbf{midpoint} Riemann Sum will use the midpoint of each interval giving you a much more accurate underestimate. The \textbf{trapezoidal} Riemann Sum (which will not be discussed here) will  give an even more accurate overestimate approximation.
+
+\bigskip
+
+\begin{itemize} 
+\item \color{mypink}Left-Riemann Sum: \color{black} $\displaystyle x_i = x_{n-1}$\color{black}.
+\item \color{mypink}Right-Riemann Sum: \color{black}  $\displaystyle x_i = x_i$\color{black}.
+\item \color{mypink}Midpoint-Riemann Sum: \color{black} $\displaystyle x_i = \frac{1}{2}(x_{i-1} + x_i)$\color{black}.
+\end{itemize}
+
+\newpage
+
+\noindent \color{myblue} \textbf{\large Example 1:} \color{black} $\displaystyle f(x) = (x-2)^2; \ \  [0, 2]$
+
+\bigskip
+
+Using the \textbf{midpoint rule} approximate the area of \color{myblue}$ f(x) = (x-2)^2 $ \color{black} from 0 to 2. 
+\bigskip
+\begin{wrapfigure}{r}{.4\textwidth}
+\includegraphics[scale=.55]{xMin2SqLines}
+\end{wrapfigure}
+
+\begin{enumerate}
+\item Using regular partitions, let $n = 4$ find $\Delta x$. 
+\item Remember, $\Delta x = \frac{b - a}{n}$, therefore $\Delta x = \frac{1}{2}$.
+\item Find the endpoints. $x_0 \ \text{or} \ a = 0$, $x_1 = \frac{1}{2}$, $x_2 = 1$, $x_3 = \frac{3}{2}$, $x_4 \ \text{or} \ b = 2$.
+\item Simply evaluate each function at the midpoint of each sub-interval. \color{mypink}
+$$ f(\frac{x_0 + x_1}{2}) = f(\frac{1}{4}) = \frac{49}{16} = 3.065$$
+$$ f(\frac{x_1 + x_2}{2}) = f(\frac{3}{4}) = \frac{25}{16} = 1.625$$
+$$ f(\frac{x_2 + x_3}{2}) = f(\frac{5}{4}) = \frac{9}{16} = .5625$$
+$$ f(\frac{x_3 + x_4}{2}) = f(\frac{7}{4}) = \frac{1}{16} = .0625$$ \color{black}
+\item Lastly, sum the above values and multiply by $\Delta x = \frac{1}{2}$. \color{mypink}
+$$ \frac{1}{2} (3.065 + 1.625 + .5625 + .0625) = 2.625$$
+\color{black}
+Compare this result to actual definite integral which is \color{myblue} $\approx 2.6667$\color{black}.
+\end{enumerate}
+\color{black} 
+
+\bigskip
+
+\large\noindent\textbf{Relationship - Riemann Sum to Definite Integral}
+
+$$ \lim_{n\to \infty} \  \sum_{i=1}^{n} \ f(C_i)\Delta x \ = \ \int^b_a \ f(x) \ dx $$ 
+
+\normalsize
+\noindent The relationship between Riemann Sums and Definite Integrals is pretty straight forward. Here you can see limit of the Riemann Sum as $n$ approaches infinity produces the Definite Integral, which is in turn the desired area $[a, b]$ of the region.
+
+
+\newpage
+
+\bigskip
+
+\begin{tcolorbox}[colback = lightgray!75!white,
+				  sharp corners = all,
+				  colframe = lightgray!75!white]
+\textbf{\large Definite Integral - Formal Definition}
+
+\bigskip
+
+Let $f$ be defined on the closed interval $[a,b]$, and the limit of Riemann sums over partitions $\Delta x$:
+
+\bigskip
+$$ \lim_{||\Delta||\to 0} \  \sum_{i=1}^{n}  \ f(C_i) \ \Delta x $$ 
+
+\bigskip
+
+provided the limit exists then $f$ is
+\bigskip
+\textbf{integratable} on $[a, b]$, and the limit is:
+$$ \lim_{||\Delta||\to 0} \  \sum_{i=1}^{n} \ f(C_i)\Delta x \ = \int^b_a \ f(x) \  dx $$
+
+\bigskip
+
+The limit is the \textbf{definite integral} of $f$ from $a$ to $b$, where $a$ is the \textbf{lower limit} and $b$ is the \textbf{upper limit} of integration.
+\end{tcolorbox}
+
+\bigskip
+
+You may have noticed that earlier versions of this definition vary slightly. That is the limit as $ ||\Delta|| \to 0 $ vs $ n \to \infty $. It stands to reason that as the interval size ($||\Delta ||$) gets smaller and smaller, as the number of partitions ($n$) gets higher and higher, namely, $n$ is approaching infinity, as $||\Delta||$ approaches $0$. Thereby, one implies the other. 
+
+\bigskip
+
+In previous chapters you've already learned about indefinite integrals, here you can see that the restrictions of a closed interval $[a, b]$ has been placed on the integration. It is important to recognize that although they \textit{appear} similar, the \textbf{indefinite} and \textbf{definite} integral are not the same. 
+
+\bigskip
+\begin{center}
+\noindent An \textbf{indefinite integral} is a \textit{family of functions} where the variable can take on any number. 
+\bigskip
+
+\noindent On the other hand, a \textbf{definite integral} is a \textit{number}.
+\end{center}
+\bigskip
+
+\begin{tcolorbox}[colback = white!5!white, 
+				  colframe = myblue,
+				  colbacktitle = white!5!white,
+				  drop shadow southeast, 
+				  enhanced,
+				  sharp corners = all, 
+title =\color{mypink}\textbf{THEOREM 1 \color{black} Continuity Implies Integrability}]
+If a function $f$ is continuous on the closed interval $[a,b]$ then $f$ is integrable on $[a, b]$. Therefore:
+
+$$ \int^b_a \ f(x) \  dx$$ 
+
+exists.
+
+\end{tcolorbox}
+
+\bigskip
+
+It should be noted that although continuity on the interval implies that a function can be integrated, the opposite is not being implied. That is, there are functions that are not continuous that can be integrated. Though that will be examined in future chapters. 
+
+\bigskip
+
+\noindent \textbf{Evaluating a Definite Integral as a Limit}
+
+\bigskip
+When finding the exact area using the limit of a Riemann sum, you'll see that with this method, the type of Riemann Sum used doesn't actually matter. Since by definition the definite integral is the limit of the Riemann Sum, example 2 will demonstrate this. 
+
+\bigskip
+
+\noindent \color{myblue} \textbf{\large Example 2:} \color{black} Find the integral of $ \int_0^3 x \ dx $ using the limit of a Riemann sum.
+
+\bigskip
+
+As you can see, $f(x) = x$ is continuous on the interval $[0, 3]$. Therefore, we know that its \textbf{integrable}. For convenience we will again use \textbf{regular} intervals. Then,
+
+\begin{wrapfigure}{r}{.4\textwidth}
+\includegraphics[scale=.55]{ex2}
+\end{wrapfigure}
+
+
+\color{mypink}
+$$ \int_0^3 x \ dx = \sum_{i = 1}^n \ f(C_i) \ \Delta x$$ \color{black}
+
+\begin{enumerate}
+\item Find $\Delta x$. \color{mypink}
+	$$\Delta x = \frac{b - a}{n} = \frac{3}{n}$$ \color{black}
+\item Find end points and define $C_i$.\color{mypink}
+	$$C_i = a + i(\Delta x) = 0 + \frac{3i}{n}$$ \color{black}
+\item Set up the integral as the limit. \color{mypink}	
+	$$\int_0^3 x \ dx = \lim_{||\Delta|| \to 0} \ \sum_{i=1}^n \ f(C_i) \Delta x_i$$
+\color{black}Then, 
+$$\int_0^3 x \ dx = \lim_{n \to \infty} \ \sum_{i=1}^n \ f(C_i) \Delta x$$
+\end{enumerate}
+
+Now, to find the exact value of the integral we just need to find the limit.
+
+\newpage
+$$\int_0^3 x \ dx 
+= \lim_{n \to \infty} \ \sum_{i=1}^n \ f(C_i) \Delta x $$
+
+\bigskip
+
+\begin{itemize}
+\item To find the limit, begin by replacing the values for $F(C_i)$ and $\Delta x$.\color{myblue}
+$$ = \lim_{n \to \infty} \ \sum_{i=1}^n \ \left(\frac{3i}{n}\right) \left(\frac{3}{n}\right)$$ \color{black}
+
+\item Factor out $\frac{3}{n}$.\color{myblue}
+$$ = \lim_{n \to \infty} \ \left(\frac{3}{n}\right) \ \left[\left(\frac{3}{n}\right) \sum_{i=1}^n \ i\right]$$
+\color{black}
+
+\item Substitute the summation.\color{myblue}
+$$= \lim_{n \to \infty} \ \left(\frac{3}{n}\right) \ \left[\left(\frac{3}{n}\right) \frac{n(n+1)}{2} \right]$$
+\color{black}
+\item Factor out $\frac{9}{2}$.\color{myblue}
+$$= \left(\frac{9}{2}\right)\lim_{n \to \infty} \  \ \left[\left(\frac{3}{n}\right) n(n+1) \right]$$
+\color{black}
+
+\item Solve using direct substitution.\color{myblue}
+$$ \int_0^3 x \ dx = \frac{9}{2} $$
+\color{black}
+
+\item Therefore the area of $f(x)$ on the interval $[0, 3]$ is $\displaystyle \frac{9}{2}$.
+
+\end{itemize}
+
+\bigskip
+
+\begin{tcolorbox}[colback = white!5!white, 
+				  colframe = myblue,
+				  colbacktitle = white!5!white,
+				  drop shadow southeast, 
+				  enhanced,
+				  sharp corners = all, 
+title =\color{mypink}\textbf{THEOREM 2 \color{black} The Definite Integral as the Area of a Region}]
+If a function $f$ is continuous on the closed interval $[a,b]$ then the area of the region bounded by $[a, b]$, and the graph $f(x)$. Then:
+
+$$ \text{Area} \ = \int^b_a \ f(x) \  dx. $$
+
+\end{tcolorbox}
+
+\newpage
+
+\begin{center} \large\textbf{Practice problems -Riemann Sums} \end{center}
+
+The next chapter will examine properties and definite integration techniques. However, before moving on it is important to make sure you understand what has been covered thus far. Try solving the following problems. 
+
+\begin{enumerate}
+\item Approximate the area for:
+$$ f(x) = \frac{(x+3)^2}{2}$$ using: \\
+a) the left Riemann sum \\
+b) the right Riemann Sum \\
+c) the midpoint rule Riemann sum 
+
+\item Evaluate 
+$$ \int_0^3 \ \frac{x^3}{3} \ dx $$
+using the limit of a Riemann sum. 
+
+\item Find the area of 
+$$ \sqrt{1-x^2} \ \text{on the interval} \ [0, 1]. $$
+
+\item The following is an example of what type of Riemann Sum?
+\end{enumerate}
+
+\includegraphics[scale=.5]{rRieSum}
+
+\newpage
+
+\textbf{Solutions}
+1) a) 8.148, b) 13.481, c) 10.592, 
+2) $\displaystyle\frac{27}{4}$, 
+3) $\displaystyle\frac{\pi}{4}$
+4) right Riemann sum
+
+\vspace{1.5in}
+
+\noindent \textbf{\Large References}
+
+\bigskip
+
+\noindent Larson, R., \& Edwards, B. H. (2015). \textit{Calculus: Early transcendental functions}. Brooks/Cole
+
+\bigskip
+
+\noindent \textit{Mathgrapher: Graphing calculator-function grapher}. eMathHelp. (n.d.). Retrieved February 12, 2022, from https://www.emathhelp.net/en/calculators/calculus-1/online-graphing-calculator/ 
+
+\bigskip
+
+\noindent \textit{Riemann, Bernhard (1826-1866) -- from Eric Weisstein's World of Scientific Biography}. scienceworld.wolfram.com. (n.d.). Retrieved February 12, 2022, from \\ https://scienceworld.wolfram.com/biography/Riemann.html 
+
+\bigskip
+
+\noindent Editor. (1826, September 17). \textit{Bernhard Riemann}. Simply Charly. Retrieved February 12, 2022, from https://www.simplycharly.com/people/bernhard-riemann 
+
+\bigskip
+
+\noindent \textit{Riemann sums}. Brilliant Math \& Science Wiki. (n.d.). Retrieved February 12, 2022, from \\ https://brilliant.org/wiki/riemann-sums/ 
+
+\bigskip
+
+\noindent McMullin, L., says:, G., \& says:, L. M. M. (2017, November 28). \textit{Riemann sums}. Teaching Calculus. Retrieved February 12, 2022, from https://teachingcalculus.com/2012/12/12/1472/
+
+
+
+\vspace{2in}
+\begin{center}
+Bernadette Hoffman \\
+Math 408\\
+02/12/22\\
+Created using \LaTeX.
+\end{center}
+
+\end{document}
