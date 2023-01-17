@@ -1,0 +1,381 @@
+\documentclass[12pt]{article}
+
+\usepackage{fullpage}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage[skins]{tcolorbox}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{mnsymbol}
+\usepackage{tikz}
+%\usefonttheme[onlymath]{serif}
+
+
+\begin{document}
+
+\definecolor{beige}{RGB}{217, 217, 132}
+\definecolor{mypink}{RGB}{235, 63, 86}
+\definecolor{myblue}{RGB}{5, 150, 247}
+
+\color{mypink}\section*{Fundamental Theorem of Calculus}
+\color{black}
+You have now been introduced to the two major branches of calculus: differential calculus (introduced with the tangent line problem) and integral calculus (introduced with with the area problem). At this point, these two problems might seem unrelated - but there is a very close connection. The connection was discovered independently by Isaac Newton and Gottfried Leibnix and is stated in a theorem that is appropriately called the \textbf{Fundamental Theorem of Calculus}.
+
+Informally, the theorem states that differentiation and (definite) integration are inverse operations, in the same sense that division and multiplication are inverse operations. To see how Newton and Leibniz might have anticipated this relationship, consider the approximations shown in Figure 4.26. The slope of the tangent line was defined using the \textit{quotient} $\Delta$y/$\Delta$x (the slope of the secant line). Similarly, the area of a region under a curve was defined using the \textit{product} $\Delta$y$\Delta$x (the area of a rectangle). So, at least in the primitive approximation stage, the operations of differentiation and definite integration appear to have an inverse relationship in the same sense that division and multiplication are inverse operations. The Fundamental Theorem of Calculus states that the limit processes (used to define the derivative and definite integral) preserve this inverse relationship.
+
+\bigskip 
+ 
+%Figure out shadow, not showing
+\begin{tcolorbox}[colback = white!5!white, 
+				  colframe = myblue,
+				  colbacktitle = white!5!white,
+				  drop shadow southeast, 
+				  enhanced,
+				  sharp corners = all, 
+title =\color{myblue}\textbf{THEOREM 4.9 \color{black} THE FUNDAMENTAL THEOREM OF CALCULUS}]
+If a function $f$ is continuous on the closed interval $[a,b]$ and $F$ is an antiderivative of $f$ on the interval $[a,b]$, then
+
+$$ \int_{a}^{b} f(x) \,dx \ = F(b) - F(a).$$ 
+
+\end{tcolorbox}
+
+\bigskip
+%proof image or box
+\color{myblue}
+\noindent \textbf{(PROOF)} \color{black} \hspace{.2cm} The key to the proof is in writing the difference F(b) - F(a) in a convenient form. Let $\Delta$ be any partition of [$a, b$].
+
+$$ a = x_0 < x_1 < x_2 < ... < x_{n-1} < x_n = b $$
+
+\noindent By pairwise subtraction and addition of like terms, you can write
+
+\begin{align*}
+F(b) - F(a) &= F(x_n) - F(x_(n-1) - ... - F(x_1) + F(x_1) - F(x_0)
+&= \sum_{i=1}^{n} [F(x_i) - F(x_{i-1})].
+\end{align*}
+
+\noindent By the Mean Value Theorem, you know that there exists a number $c_i$ in the $i$th subinterval such that
+
+$$F'(c_i) = \frac{F(x_i) - F(x_{i-1})}{x_i - X_{i-1}}.$$
+
+\noindent Because $F'(c_i) = f(c_i)$, you can let $\Delta x_i = x_i - x_{i-1}$ and obtain
+
+$$ F(b)-F(a) = \sum_{i=1}^{n} f(c_i)\Delta x_i. $$
+
+\noindent This important equation tells you that by repeatedly applying the Mean Value Theorem, you can always find a collection of $c_i$'s such that the \textit{constant} F(b)- F(a) is a Riemann sum of $f$ on $[a,b]$ for any partition. Theorem 4.4 guarantees that the limit of Riemann sums over the partition with $\| \Delta \| \to 0$ exists. So, taking the limit as (as $\| \Delta \| \to 0$) produces
+
+$$ F(b) - F(a) = \int_{a}^{b} f(x) \,dx. $$
+
+\bigskip
+
+The following guidelines can help you understand the use of the Fundamental Theorem of Calculus.
+\sffamily
+\begin{tcolorbox}[colback = beige!75!white,
+				  sharp corners = all,
+				  colframe = beige!75!white]
+\textbf{GUIDELINES FOR USING THE FUNDAMENTAL THEOREM OF CALCULUS}
+\rmfamily
+\begin{enumerate}
+\item \textit{Provided you can find} an antiderivative of $f$, you now have a way to evaluate a definite integral without having to use the limit of a sum.
+
+\item When applying the Fundamental Theorem of Calculus, the following notation is convenient
+$$ \left. \int_{a}^{b} f(x) \,dx = F(x) \right]_a^b$$
+$$ = F(b) - F(a) $$
+
+For instance, to evaluate $ \int_{1}^{3} x^3 \,dx $, you can write
+$$ \int_{1}^{3} x^3 \,dx = \frac{x^4}{4} = \frac{3^4}{4} - \frac{1^4}{4} = \frac{81}{4} - \frac{1}{4} = 20.$$
+
+\item It is not necessary to include a constant of integration \textit{C} in the antiderivative because
+\begin{align*}
+\int_{a}^{b} f(x) \,dx &= \bigg[ F(x) + C \bigg]_a^b \\
+  &= [F(b) + C] - [F(a) + C] \\
+ &= F(b) - F(a) 
+\end{align*}
+\end{enumerate}
+\end{tcolorbox}
+
+\pagebreak
+
+\noindent \textbf{\huge Integration by Parts}
+\color{mypink}\section*{Integration by Parts}
+\color{black} \rmfamily
+In this section you will study an important integration technique called \textbf{integration by parts.} This technique can be applied to a wide variety of functions and is particularly useful for integrands involving \textit{products} of algebraic and  functions. For instance, integration by parts works well with integrals such as
+
+$$ \int x\ ln\ x\ dx, \hspace{.2cm} \int x^2\ e^x\ dx, \hspace{.2cm} and \hspace{.2cm} \int e^x\ \sin x\ dx. $$
+
+\noindent Integration by parts is based on the formula for the derivative of a product 
+
+\begin{align*}
+\frac{d}{dx} [uv] &= u \frac{dv}{dx} + v \frac{du}{dx}\\
+ &= uv' + vu'
+\end{align*}
+
+\noindent where both \textit{u} and \textit{v} are differentiable functions of \textit{x}. If $u'$ and $v'$ are continuous, you can integrate both sides of this equation to obtain
+
+\begin{align*}
+uv &= \int uv' \ dx + \int vu' \ dx\\
+&= \int u + \int v \ du.
+\end{align*}
+
+\noindent By rewriting this equation, you obtain the following theorem.
+
+\begin{tcolorbox}[colback = white!5!white, 
+				  colframe = myblue,
+				  colbacktitle = white!5!white,
+				  drop shadow southeast, 
+				  enhanced,
+				  sharp corners = all, 
+title =\color{myblue}\textbf{THEOREM 8.1 \color{black} INTEGRATION BY PARTS}]
+If $u$ and $v$ are functions of $x$ and have continuous derivatives, then
+
+$$ \int u \ dv \ = \ uv \ - \int v \ du.$$
+%need to align integral further left
+\end{tcolorbox}
+
+\bigskip
+
+This formula expresses the original integral in terms of another integral. Depending on the choices of $u$ and $dv$, it may be easier to evaluate the second integral than the original one. Because the choices of $u$ and $dv$ are critical in the integration by parts process, the following guidelines are provided. 
+
+\sffamily
+\begin{tcolorbox}[colback = beige!75!white,
+				  sharp corners = all,
+				  colframe = beige!75!white]
+\textbf{GUIDELINES FOR INTEGRATION BY PARTS}
+\rmfamily
+%Try to move indent left
+\begin{enumerate}
+\item[\textbf{1.}] Try letting $dv$ be the most complicated portion of the integrand that fits a basic integration rule. Then $u$ will be the remaining factor(s) of the integrand.
+
+\item[\textbf{2.}] Try letting $u$ be the portion of the integrand whose derivative is a function simpler than $u$. Then $dv$ will be the remaining factor(s) of the integrand.
+\end{enumerate}
+
+\noindent Note that $dv$ always includes the $dx$ of the original integrand. 
+\end{tcolorbox}
+
+\bigskip
+
+\noindent \color{myblue} \large \textbf{EXAMPLE} \color{black} \normalsize \textbf{Integration by Parts}
+\rmfamily
+
+\bigskip
+
+\noindent Find $ \displaystyle \int xe^x \ dx$.
+\sffamily
+
+\bigskip
+
+\noindent \color{myblue} \textbf{SOLUTION} \color{black} \rmfamily \hspace{.3cm}To apply integration by parts, you need to write the integral in the form $\int u \ dv$. There are several ways to do this.
+
+$$ \int \color{mypink}\underbrace{\color{black}(x)}_\text{u} \color{mypink}\underbrace{\color{black}(e^x dx)}_\text{dv}\color{black}, 
+\hspace{.2cm} \int \color{mypink}\underbrace{\color{black}(e^x)}_\text{u} \color{mypink}\underbrace{\color{black}(x dx)}_\text{dv}\color{black}, 
+\hspace{.2cm}  \int \color{mypink}\underbrace{\color{black}(1)}_\text{u} \color{mypink}\underbrace{\color{black}(xe^x dx)}_\text{dv}\color{black}, 
+\hspace{.2cm} \int \color{mypink}\underbrace{\color{black}(x e^x)}_\text{u} \color{mypink}\underbrace{\color{black}(dx)}_\text{dv} $$
+
+\noindent The guidelines on page 527 suggest the first option because the derivative of $u = x$ is simpler than $x$, and $dv = e^x \ dx$ is the most complicated portion of the integrand that fits a basic integration formula. 
+
+
+\begin{alignat*}{3}
+dv = e^x \ dx \hspace{.5cm}  &\color{mypink}\Rightarrow \color{black}&v &= \int dv = \int e^x \ dx = e^x\\
+u = x \hspace{.5cm} &\color{mypink}\Rightarrow \color{black}& \hspace{.3cm}du &= dx
+\end{alignat*}
+
+\noindent Now, integration by parts produces
+
+\begin{align*}
+\int u \ dv &= uv - \int v \ du \ \hspace{2cm} &&\text{\color{mypink}\small Integration by parts formula}\\
+ \int xe^x \ dx &= xe^x - \int e^x  dx &&\text{\color{mypink}\small Substitute.}\\
+ &= xe^x - e^x + C. &&\text{\color{mypink}\small Integrate.}
+\end{align*}
+
+\bigskip
+
+\noindent To check this, differentiate $xe^x - e^x + C$ to see that you obtain the original integrand.
+
+\pagebreak
+
+\sffamily
+\noindent \color{myblue} \large \textbf{EXAMPLE} \color{black} \normalsize \textbf{Integration by Parts}
+\rmfamily
+
+\bigskip
+
+\noindent Find $\displaystyle \int x^2 \ln x \ dx$.
+
+\bigskip
+
+\sffamily
+\noindent \color{myblue} \textbf{SOLUTION} \color{black} \rmfamily \hspace{.3cm} In this case, $x^2$ is more easily integrated that $ln x$. So, you should let $dv = x^2 dx$.
+
+\begin{alignat*}{3}
+dv &= x^2 \hspace{.1cm}dx \hspace{.3cm}&&\color{mypink}\Rightarrow\color{black}& v &= \int x^2 \ dx = \frac{x^3}{3}\\
+u &= \ln x &&\color{mypink}\Rightarrow\color{black} & \hspace{.3cm}du &= \frac{1}{x} dx
+\end{alignat*}
+
+\noindent Integration by parts produces
+\begin{alignat*}{2}
+\int u \ dv &= uv - \int v \ du \ \hspace{2cm} &&\text{\color{mypink}\small Integration by parts formula}\\
+ \int x^2 \ln \ x \ dx &= \frac{x^3}{3} \ln \ x - \int \left(\frac{x^3}{3}\right) \left(\frac{1}{x}\right) dx \hspace{2cm} &&\text{\color{mypink}\small Substitute.}\\
+ &= \frac{x^3}{3} \ln \ x - \frac{1}{3} \int x^2 \ dx &&\text{\color{mypink}\small Simplify.}\\
+ &= \frac{x^3}{3} \ln \ x - \frac{x^3}{9} + C. &&\text{\color{mypink}\small Integrate.}
+\end{alignat*}
+You can check this result by differentiating.
+
+$$ \frac{d}{dx} \left[\frac{x^3}{3} \ \ln \ x \ - \frac{x^3}{9} \right] = \frac{x^3}{3} \left(\frac{1}{x} \right) + (\ln \ x)(x^2) - \frac{x^2}{3} = x^2 \ \ln \ x  \hspace{4cm} \color{myblue} \filledmedsquare$$
+
+\vspace{1cm}
+
+One surprising application of integration by parts involves integrands consisting of single terms, such as $\int \ln x \ dx$ or $ \int \arcsin x \ dx$. In these cases, try letting $dv = dx$, as shown in the next example.
+
+\bigskip
+
+\sffamily
+\noindent \color{myblue} \large \textbf{EXAMPLE} \color{black} \normalsize \textbf{An Integrand with a Single Term}
+\rmfamily
+
+\bigskip
+
+\noindent Evaluate $ \displaystyle \int_0^1 \arcsin x \ dx$.
+
+\bigskip
+
+\sffamily
+\noindent \color{myblue} \textbf{SOLUTION} \color{black} \rmfamily \hspace{.3cm} Let $dv = dx$.
+
+\begin{alignat*}{3}
+dv &= dx       &  \hspace{.3cm} &\color{mypink} \Rightarrow \color{black}   & \hspace{.5cm}  v&= \int dx \ = \ x \\
+u &= \arcsin x &   &\color{mypink} \Rightarrow \color{black}   &   du&= \frac{1}{\sqrt{1-x^2}} dx \\
+\end{alignat*}
+
+\noindent Integration by parts now produces
+\begin{alignat*}{2}
+\int u \ dv &= uv - \int v \ du \ \hspace{2cm} &&\text{\color{mypink}\small Integration by parts formula}\\
+ \int \arcsin \ x \ dx &= x \arcsin x - \int \frac{x}{\sqrt{1-x^2}} \ dx \hspace{2cm} &&\text{\color{mypink}\small Substitute.}\\
+ &= x \arcsin x + \frac{1}{2} \int (1 - x^2)^{-1/2} (-2x) \ dx \hspace{1.5cm} &&\text{\color{mypink}\small Rewrite.}\\
+ &= x \arcsin x + \sqrt{1 - x^2} + C. &&\text{\color{mypink}\small Integrate.}
+\end{alignat*}
+
+\noindent Using this antiderivative, you can evaluate the definite integral as follows.
+\begin{align*}
+\int_0^1 \arcsin x \ dx &= \bigg[ \ x \arcsin x + \sqrt{1 - x^2} \ \bigg]_0^1 \\
+&= \frac{\pi}{2} - 1 \\
+&\approx 0.571
+\end{align*}
+
+\noindent The area represented by this definite integral is shown in Figure 8.2. \hspace{4cm} $\color{myblue} \filledmedsquare$
+
+\vspace{1cm}
+
+Some integrals require repeated use of the integration by parts formula. 
+
+\bigskip
+
+\sffamily
+\noindent \color{myblue} \large \textbf{EXAMPLE} \color{black} \normalsize \textbf{Repeated Use of Integration by Parts}
+\rmfamily
+
+\bigskip
+
+\noindent Find $ \displaystyle \int x^2 \sin x \ dx$.
+
+\bigskip
+
+\sffamily
+\noindent \color{myblue} \textbf{SOLUTION} \color{black} \rmfamily \hspace{.3cm} The factors $x^2$ and $\sin x$ are equally easy to integrate. However, the derivative of $x^2$ becomes simpler, whereas the derivative of $sin x$ does not. So, you should let $u = x^2$.
+
+\begin{alignat*}{3}
+dv &= \sin x \ dx \quad &\color{mypink}\Rightarrow\color{black} \quad  v &= \int \sin x \ dx = -\cos x \\
+u &= x^2 &\color{mypink}\Rightarrow\color{black} \quad  du &= 2x dx
+\end{alignat*}
+
+\noindent Now, integration by parts produces
+
+$$ \int x^2 \sin x \ dx = -x^2 \cos x + \int 2x \cos x \ dx. \hspace{2cm} \text{\color{mypink}\small First use of integration by parts} $$
+
+\noindent The first use of integration by parts has succeeded in simplifying the original integral, but the integral on the right still doesn't fit a basic integration rule. To evaluate that integral, you can apply integration by parts again. This time, let $u = 2x$.
+
+\begin{alignat*}{3}
+dv &= \cos x \ dx \quad &\color{mypink}\Rightarrow\color{black} \quad v &= \int \cos x \ dx = \sin x \\
+u &= 2x \quad &\color{mypink}\Rightarrow\color{black} \quad du &= 2 dx
+\end{alignat*}
+
+\noindent Now, integration by parts produces
+
+\begin{align*}
+\int 2x \cos x \ dx &= 2x \sin x - \int 2 \sin x \ dx \hspace{2cm} \text{\color{mypink}\small Second use of integration by parts} \\
+&= 2x \sin x + 2 \cos x + C.
+\end{align*}
+
+\noindent Combining these two results, you can write
+
+$$ \int x^2  \sin \ x \ dx \ = \ -x^2  \cos \ x \ + \ 2x \ \sin \ x \ + \ 2 \ \cos \ x \ + \ C. \hspace{4cm} \color{myblue} \filledmedsquare$$
+
+\vspace{1cm}
+
+When making repeated applications of integration by parts, you need to be careful not to interchange the substitutions in successive applications. For instance, in Example 4, the first substitution was $u = x^2$ and $dv = \sin \ x \ dx$. If, in the second application, you had switched the substitution to $u = \cos$ and $dv = 2x$, you would have obtained
+
+\begin{align*}
+\int x^2 \ \sin x \ dx &= -x^2 \ \cos x \ + \int 2x \cos x \ dx \\
+&= -x^2 \ \cos x + x^2 \ \cos x + \int x^2 \ \sin x \ dx = \int x^2 \ \sin x \ dx
+\end{align*} 
+
+\noindent thereby undoing the previous integration and returning to the \textit{original} integral. When making repeated applications of integration by parts, you should also watch for the appearance of a \textit{constant multiple} of the original integral. For instance, this occurs when you use integration by parts to evaluate $\int e^x \cos 2x dx$, and also occurs in Example 5 on the next page.
+
+The integral in Example 5 is an important one. In Section 8.4 (Example 5), you will see that it is used to fine the arc length of a parabolic segment. 
+
+\pagebreak
+
+\noindent \color{myblue} \large \textbf{EXAMPLE} \color{black} \normalsize \textbf{Integration by Parts}
+\rmfamily
+
+\bigskip
+
+\noindent Find $\displaystyle \int \sec^3 x \ dx$.
+\sffamily
+
+\bigskip
+
+\noindent \color{myblue} \textbf{SOLUTION} \color{black} \rmfamily \hspace{.3cm}The most complicated portion of the integrand that can be easily integrated in $\sec^2 x \ dx$, so you should let $dv = sec^2 x \ dx$ and $u = \sec x$.
+
+\begin{alignat*}{3}
+dv &= \sec^2 x \ dx       &  \hspace{.3cm} &\color{mypink} \Rightarrow \color{black}   & \hspace{.5cm}  v&= \int \sec^2 x \ dx \ = \tan x \\
+u &= \sec x &   &\color{mypink} \Rightarrow \color{black}   &   du&= \sec x \tan x dx \\
+\end{alignat*}
+
+\noindent Integration by parts produces
+
+\begin{align*}
+\int u \ dv &= uv - \int v \ du \hspace{5cm} &&\text{\color{mypink}\small Integration by parts formula}\color{black}\\
+\int \sec^3 x \ dx &= \sec x \ \tan x - \int \sec x \ \tan^2 x \ dx  &&\text{\color{mypink}\small Substitute.}\color{black}\\
+\int \sec^3 x \ dx &= \sec x \ \tan x - \int \sec x (\sec^2 x - 1) \ dx  &&\text{\color{mypink}\small Trigonometric indenty}\color{black}\\
+\int \sec^3 x \ dx &= \sec x \ \tan x - \int \sec^3 x \ + \int \sec x \ dx  &&\text{\color{mypink}\small Rewrite.}\color{black}\\
+2 \int \sec^3 x \ dx &= \sec x \ \tan x + \int \sec x \ dx  &&\text{\color{mypink}\small Collect like integrals.}\color{black}\\
+2 \int \sec^3 x \ dx &= \sec x \ \tan x + \ln |\sec x + \tan x| + C  &&\text{\color{mypink}\small Integrate.}\color{black}\\
+\int \sec^3 x \ dx &= \frac{1}{2} \sec x \ \tan x + \frac{1}{2}\ln |\sec x + \tan x| + C  &&\text{\color{mypink}\small Divide by 2.}\color{black}\\
+\end{align*}
+
+As you gain experience in using integration by parts, your skill in determining $u$ and $dv$ will increase. The following summary lists several common integrals with suggestions for the choices of $u$ and $dv$.
+
+
+\sffamily
+\begin{tcolorbox}[colback = beige!75!white,
+				  sharp corners = all,
+				  colframe = beige!75!white]
+\textbf{SUMMARY OF COMMON INTEGRALS USING INTEGRATION BY PARTS}
+\rmfamily
+%Try to move indent left
+\begin{enumerate}
+\item[\textbf{1.}] For integrals of the form \\
+$$ \int x^n \ e^{ax} \ dx, \quad \int x^n \sin ax \ dx, \quad \text{or} \quad \int x^n \cos ax \ dx $$ \\
+let $u = x^n$ and let $dv = e^ax \ dx$, $\sin ax \ dx$, or $ \cos ax \ dx$.
+
+\item[\textbf{2.}] For integrals of the form \\
+$$ \int x^n \ln x \ dx, \quad \int x^n \arcsin ax \ dx, \text{or} \quad \int x^n \arctan ax \ dx $$ \\
+let $u = \ln x$, $\arcsin ax$, or $\arctan ax$ and let $dv = x^n dx$.
+
+\item[\textbf{3.}] For integrals of the form \\
+$$ \int e^{ax} \sin bx \ dx \quad \text{or} \quad \int e^{ax} \cos bx \ dx$$ \\
+let $u = \sin bx$ or $\cos bx$ and let $dv = e^{ax} \ dx$.
+
+\end{enumerate}
+\end{tcolorbox}
+
+\end{document}

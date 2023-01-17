@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1604076950 source:c:\users\berna\onedrive\desktop\school\c++\c++\cointosssim\main.cpp
+	<iostream>
+	<cctype>
+	<string>
+	<cstdlib>
+	<ctime>
+	"coin.h"
+
+1604077010 c:\users\berna\onedrive\desktop\school\c++\c++\cointosssim\coin.h
+	<iostream>
+	<string>
+	<cstdlib>
+	<ctime>
+

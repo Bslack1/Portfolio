@@ -1,0 +1,80 @@
+\documentclass{beamer}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usefonttheme[onlymath]{serif}
+\begin{document}
+
+\begin{frame}
+
+\begin{center}
+
+\Huge \color{orange}\textbf{Numerical Analysis:} 
+
+\Large \color{purple}Important Methods \\
+
+\bigskip
+
+\large \color{cyan}Bernadette Hoffman \\
+
+\normalsize \color{black} December $13^{th}$, 2021
+
+\end{center}
+
+\end{frame}
+
+\begin{frame}
+
+\frametitle{\color{orange}Newton's Method}
+
+\normalsize \color{black}
+When approximating the root of a function Newton's method is one of the most commonly used because of its ease of use.\\ Proof:
+\begin{center}
+\color{purple} 
+\begin{align*}
+ f'(x_n) &= \frac{f(x_n)}{x_n - x_{n+1}} \\ 
+ f'(x_n)(x_n - x_{n+1}) &= f(x_n) \\ 
+ x_n - x_{n+1} &= \frac{f(x_n)}{f'(x_n)} \\ 
+ -x_{n+1} &= \frac{f(x_n)}{f'(x_n)} - x_n \\ 
+ x_{n+1} &= x_n - \frac{f(x_n)}{f'(x_n)} \\ 
+\end{align*} 
+\color{black}The final product gives Newton's method for solving $f(x)=0$.
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{\color{orange}Secant Method}
+Where Newton's method uses the tangent line to approximate the root of a function, the Secant method uses (obviously) the secant line. \\
+\color{purple}
+$$ \frac{f(x_n)-0}{x_n - x_{n+1}} = \frac{f(x_{n-1} - f(x_n)}{x_{n-1} - x_n} $$ \pause
+\color{black}Becomes: \\ \pause
+\color{purple}$$ x_{n+1} = x_n - f(x_n) \cdot \frac{x_n - x_{n-1}}{f(x_n) - f(x_{n-1})} $$
+
+\end{frame}
+
+\begin{frame}
+\frametitle{\color{orange}Bisection Method}
+The bisection method is more of a computing algorithm than a formula. Also used for approximating the root of a function, the Bisection method works as follows:
+\vspace{1cm}
+\color{purple}
+\begin{center}
+\begin{enumerate}
+\item Define $c = \frac{(a+b)}{2}$ \pause
+\item If $b - c \le \epsilon \implies c$ is the root. Stop.\pause
+\item If $\pm [f(b)] \cdot \pm [f(c)] \le 0 \implies a=c$ \\ If $\pm \ge 0 \implies b = c$.
+\end{enumerate}
+\end{center}
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
