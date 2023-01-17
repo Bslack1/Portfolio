@@ -12,7 +12,13 @@ I developed my own research methodology scrapping data from Twitter (Reddit was 
 ending on the public opinion of utility companies across the United States post pandemic lockdown. The research was published in a peer reviewed 
 article. This was done using R, NVIVO, and SPSS. The data collected was used to conduct a sentiment analysis. 
 
-3 - Final LaTeX project.
+3 - C language coursework from CS 101. 
+
+4 - C++ language coursefok from CS 102.
+
+5 - LaTeX projects from elective course.
+
+6 - Statistics presentations from various elective statistics classes.
 
 More is to follow, as I compile the multiple projects that are scattered on mulitple machines. 
 
