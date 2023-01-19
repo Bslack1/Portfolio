@@ -23,4 +23,5 @@ article. This was done using R, NVIVO, and SPSS. The data collected was used to 
 More is to follow, as I compile the multiple projects that are scattered on mulitple machines. 
 
 Thank you for reading!
+
 Bernadette
